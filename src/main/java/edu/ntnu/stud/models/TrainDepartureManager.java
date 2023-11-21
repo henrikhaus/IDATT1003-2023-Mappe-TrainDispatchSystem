@@ -43,15 +43,38 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
         departure.setDelay(departure.getDelay() + minutes);
     }
 
-    public void GenerateSampleDepartures(){
-        addDeparture(new TrainDeparture(LocalTime.of(11,0), "l4", 1, "Oslo", 2, 0));
-    }
-
     public String toString() {
         String result = "";
         for (TrainDeparture departure : departures) {
             result += departure.toString() + "\n";
         }
         return result;
+    }
+
+    public void GenerateSampleDepartures(){
+        addDeparture(new TrainDeparture(
+                LocalTime.of(11,0),
+                "l4",
+                1,
+                "Oslo",
+                -1,
+                0)
+        );
+        addDeparture(new TrainDeparture(
+                LocalTime.of(11,10),
+                "l3",
+                2,
+                "Kragerø",
+                -1,
+                0)
+        );
+        addDeparture(new TrainDeparture(
+                LocalTime.of(11,0),
+                "g12",
+                3,
+                "Bergen",
+                2,
+                0)
+        );
     }
 }

@@ -29,7 +29,7 @@ public class TrainDispatchApp {
   }
 
   private void init() {
-
+    manager.GenerateSampleDepartures();
   }
 
   public void start() {
@@ -61,6 +61,7 @@ private void executeCommand(String command, Scanner scanner) {
                         () -> System.out.printf("Unknown command: \"%s\", try again.%n", command
                         ));
     } catch (IndexOutOfBoundsException e) {
+        //Invalid index
         System.out.printf("Please input a number 1-%d, or write the command name.",
                 commands.length);
     }
