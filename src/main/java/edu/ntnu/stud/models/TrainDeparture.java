@@ -8,7 +8,7 @@ public class TrainDeparture {
   private final String line;
   private final int trainNumber;
   private final String destination;
-  private String track;
+  private int track;
   private int delay;
 
   public TrainDeparture(LocalTime departureTime, String line, int trainNumber, String destination, int track,
@@ -17,7 +17,7 @@ public class TrainDeparture {
     this.line = line;
     this.trainNumber = trainNumber;
     this.destination = destination;
-    this.track = String.valueOf(track);
+    this.track = track;
     this.delay = delay;
   }
 
@@ -37,7 +37,7 @@ public class TrainDeparture {
     return destination;
   }
 
-  public String getTrack() {
+  public int getTrack() {
     return track;
   }
 
@@ -45,7 +45,7 @@ public class TrainDeparture {
     return delay;
   }
 
-  public void setTrack(String track) {
+  public void setTrack(int track) {
     this.track = track;
   }
 

@@ -5,7 +5,7 @@ import java.util.List;
 import java.time.LocalTime;
 
 public class TrainDepartureManager {
-    private List<TrainDeparture> departures = new ArrayList<TrainDeparture>();
+    private List<TrainDeparture> departures = new ArrayList<>();
 
     public void addDeparture(TrainDeparture departure) {
         departures.add(departure);
@@ -25,7 +25,7 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
     }
 
     public List<TrainDeparture> getDeparturesByDestination(String destination) {
-        List<TrainDeparture> result = new ArrayList<TrainDeparture>();
+        List<TrainDeparture> result = new ArrayList<>();
         for (TrainDeparture departure : departures) {
             if (departure.getDestination().equals(destination)) {
                 result.add(departure);
@@ -35,7 +35,7 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
     }
 
 
-    public void setTrack(TrainDeparture departure, String track) {
+    public void setTrack(TrainDeparture departure, int track) {
         departure.setTrack(track);
     }
 
@@ -54,27 +54,35 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
     public void GenerateSampleDepartures(){
         addDeparture(new TrainDeparture(
                 LocalTime.of(11,0),
-                "l4",
+                "L1",
                 1,
                 "Oslo",
-                -1,
+                1,
                 0)
         );
         addDeparture(new TrainDeparture(
                 LocalTime.of(11,10),
-                "l3",
+                "L2",
                 2,
                 "Kragerø",
-                -1,
+                3,
                 0)
         );
         addDeparture(new TrainDeparture(
                 LocalTime.of(11,0),
-                "g12",
+                "L3",
                 3,
                 "Bergen",
                 2,
-                0)
+                5)
+        );
+        addDeparture(new TrainDeparture(
+                LocalTime.of(11,0),
+                "L1",
+                4,
+                "Stavanger",
+                5,
+                10)
         );
     }
 }

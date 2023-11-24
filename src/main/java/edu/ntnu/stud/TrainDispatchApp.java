@@ -5,6 +5,7 @@ import edu.ntnu.stud.commands.ExitCommand;
 import edu.ntnu.stud.commands.GiveDelayCommand;
 import edu.ntnu.stud.commands.NewDepartureCommand;
 import edu.ntnu.stud.models.TrainDepartureManager;
+import edu.ntnu.stud.utils.DepartureTableRenderer;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -25,11 +26,11 @@ public class TrainDispatchApp {
   public static void main(String[] args) {
     var app = new TrainDispatchApp();
     app.init();
-    app.start();
   }
 
   private void init() {
-    manager.GenerateSampleDepartures();
+      manager.GenerateSampleDepartures();
+      System.out.println(DepartureTableRenderer.renderDepartureTable(manager.getDepartures()));
   }
 
   public void start() {
@@ -41,11 +42,11 @@ public class TrainDispatchApp {
       }
       System.out.println("Input command: ");
       final String command = scanner.nextLine();
-      executeCommand(command, scanner);
+      executeCommand(command);
     }
   }
 
-private void executeCommand(String command, Scanner scanner) {
+private void executeCommand(String command) {
     try {
         //Find command by index
         int commandIndex = Integer.parseInt(command) - 1;
