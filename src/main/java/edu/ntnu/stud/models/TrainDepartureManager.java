@@ -53,36 +53,44 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
 
     public void GenerateSampleDepartures(){
         addDeparture(new TrainDeparture(
-                LocalTime.of(11,0),
+                LocalTime.of(11,1),
                 "L1",
                 1,
                 "Oslo",
                 1,
-                0)
+                2)
         );
         addDeparture(new TrainDeparture(
-                LocalTime.of(11,10),
+                LocalTime.of(11,16),
                 "L2",
                 2,
-                "Kragerø",
-                3,
+                "Trondheim",
+                4,
                 0)
         );
         addDeparture(new TrainDeparture(
-                LocalTime.of(11,0),
+                LocalTime.of(11,48),
                 "L3",
                 3,
-                "Bergen",
-                2,
-                5)
+                "Sandnes",
+                0,
+                40)
         );
         addDeparture(new TrainDeparture(
-                LocalTime.of(11,0),
+                LocalTime.of(12,4),
                 "L1",
                 4,
-                "Stavanger",
+                "Kragerø",
+                0,
+                0)
+        );
+        addDeparture(new TrainDeparture(
+                LocalTime.of(12,28),
+                "L3",
                 5,
-                10)
+                "Kristiansand",
+                0,
+                0)
         );
     }
 }

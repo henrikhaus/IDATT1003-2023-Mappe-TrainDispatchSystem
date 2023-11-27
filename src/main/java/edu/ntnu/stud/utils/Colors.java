@@ -15,12 +15,14 @@ public class Colors {
 
     public static final String CYAN = "\u001B[36m";
 
+    public static final String WHITE = "\u001B[37m";
+
     public static String lineToColor(String line) {
         return switch (line) {
             case "L1" -> Colors.BLUE;
             case "L2" -> Colors.PURPLE;
             case "L3" -> Colors.CYAN;
-            default -> Colors.RESET;
+            default -> Colors.WHITE;
         };
     }
 }
