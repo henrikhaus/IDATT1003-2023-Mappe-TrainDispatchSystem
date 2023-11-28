@@ -2,8 +2,9 @@ package edu.ntnu.stud;
 
 import edu.ntnu.stud.commands.Command;
 import edu.ntnu.stud.commands.ExitCommand;
-import edu.ntnu.stud.commands.GiveDelayCommand;
+import edu.ntnu.stud.commands.SetDelayCommand;
 import edu.ntnu.stud.commands.NewDepartureCommand;
+import edu.ntnu.stud.commands.ShowDepartureTableCommand;
 import edu.ntnu.stud.models.TrainDepartureManager;
 import edu.ntnu.stud.utils.DepartureTableRenderer;
 
@@ -34,14 +35,13 @@ public class TrainDispatchApp {
   }
 
   public void start() {
-      System.out.println(DepartureTableRenderer.renderDepartureTable(manager.getDepartures()));
     while (true) {
-      System.out.println("\nCommands:");
+      System.out.println("Commands:");
       for (int i = 0; i < commands.length; i++) {
         System.out.printf("[%s] %s - %s%n", i + 1, commands[i].getName(),
                 commands[i].getDescription());
       }
-      System.out.println("Input command: ");
+      System.out.print("Input command: ");
       final String command = scanner.nextLine();
       executeCommand(command, scanner);
     }
@@ -60,11 +60,11 @@ private void executeCommand(String command, Scanner scanner) {
                 .findFirst()
                 .ifPresentOrElse(
                         (c) -> c.execute(manager),
-                        () -> System.out.printf("Unknown command: \"%s\", try again.%n", command
+                        () -> System.out.printf("\nUnknown command: \"%s\", try again.%n\n", command
                         ));
     } catch (IndexOutOfBoundsException e) {
         //Invalid index
-        System.out.printf("Please input a number 1-%d, or write the command name.",
+        System.out.printf("\nPlease input a number 1-%d, or write the command name.\n\n",
                 commands.length);
     }
 }
@@ -72,8 +72,9 @@ private void executeCommand(String command, Scanner scanner) {
   public static Command[] generateCommands() {
       return new Command[] {
               new NewDepartureCommand(),
-              new GiveDelayCommand(),
-              new ExitCommand()
+              new SetDelayCommand(),
+              new ExitCommand(),
+              new ShowDepartureTableCommand()
       };
   }
 }
