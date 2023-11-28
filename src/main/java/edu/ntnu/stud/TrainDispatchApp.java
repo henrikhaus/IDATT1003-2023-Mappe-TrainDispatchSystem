@@ -26,14 +26,15 @@ public class TrainDispatchApp {
   public static void main(String[] args) {
     var app = new TrainDispatchApp();
     app.init();
+    app.start();
   }
 
   private void init() {
-      manager.GenerateSampleDepartures();
-      System.out.println(DepartureTableRenderer.renderDepartureTable(manager.getDepartures()));
+    manager.GenerateSampleDepartures();
   }
 
   public void start() {
+      System.out.println(DepartureTableRenderer.renderDepartureTable(manager.getDepartures()));
     while (true) {
       System.out.println("\nCommands:");
       for (int i = 0; i < commands.length; i++) {
@@ -42,11 +43,11 @@ public class TrainDispatchApp {
       }
       System.out.println("Input command: ");
       final String command = scanner.nextLine();
-      executeCommand(command);
+      executeCommand(command, scanner);
     }
   }
 
-private void executeCommand(String command) {
+private void executeCommand(String command, Scanner scanner) {
     try {
         //Find command by index
         int commandIndex = Integer.parseInt(command) - 1;
