@@ -40,7 +40,7 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
     }
 
     public void setDelay(TrainDeparture departure, int minutes) {
-        departure.setDelay(departure.getDelay() + minutes);
+        departure.setDelay(minutes);
     }
 
     public String toString() {

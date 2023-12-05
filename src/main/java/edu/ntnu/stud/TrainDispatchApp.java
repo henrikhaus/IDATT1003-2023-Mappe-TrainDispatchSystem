@@ -6,7 +6,6 @@ import edu.ntnu.stud.commands.SetDelayCommand;
 import edu.ntnu.stud.commands.NewDepartureCommand;
 import edu.ntnu.stud.commands.ShowDepartureTableCommand;
 import edu.ntnu.stud.models.TrainDepartureManager;
-import edu.ntnu.stud.utils.DepartureTableRenderer;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -43,11 +42,11 @@ public class TrainDispatchApp {
       }
       System.out.print("Input command: ");
       final String command = scanner.nextLine();
-      executeCommand(command, scanner);
+      executeCommand(command);
     }
   }
 
-private void executeCommand(String command, Scanner scanner) {
+private void executeCommand(String command) {
     try {
         //Find command by index
         int commandIndex = Integer.parseInt(command) - 1;

@@ -1,5 +1,6 @@
 package edu.ntnu.stud.utils;
 
+import edu.ntnu.stud.constants.Colors;
 import edu.ntnu.stud.models.TrainDeparture;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class DepartureTableRenderer {
     private static final int MIN_TRAIN_NUMBER_LENGTH = 4;
     private static final int MIN_TRACK_NUMBER_LENGTH = 2;
     private static final int MIN_DESTINATION_LENGTH = 10;
-    private static final String PIPE = "|";
+    private static final String SIDE_FRAME = "|";
 
     /**
      * Renders a table for a list of train departures.
@@ -56,14 +57,14 @@ public class DepartureTableRenderer {
                 + (lengths[5] + SPACING) + "s %s";
 
         return String.format(departureRowFormat,
-                PIPE,
+                SIDE_FRAME,
                 renderDepartureTime,
                 renderLine,
                 renderDestination,
                 renderTrainNumber,
                 renderTrack,
                 renderDelay,
-                PIPE + "\n");
+                SIDE_FRAME + "\n");
     }
 
     /**
@@ -80,13 +81,13 @@ public class DepartureTableRenderer {
                 + (lengths[4] + SPACING + 2) + "s %-"
                 + (lengths[5] + SPACING) + "s %s";
         return String.format(headerFormat,
-                PIPE,
+                SIDE_FRAME,
                 "Time",
                 "Destination",
                 "Train",
                 "Track",
                 "Delay",
-                PIPE + "\n");
+                SIDE_FRAME + "\n");
     }
 
     /**
