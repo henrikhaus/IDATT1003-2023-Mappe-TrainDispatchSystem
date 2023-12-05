@@ -1,8 +1,9 @@
 package edu.ntnu.stud.models;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class TrainDepartureManager {
     private List<TrainDeparture> departures = new ArrayList<>();
@@ -12,10 +13,12 @@ public class TrainDepartureManager {
     }
 
     public List<TrainDeparture> getDepartures() {
+        //Sort departures by departure time
+        departures.sort(Comparator.comparing(TrainDeparture::getDepartureTime));
         return departures;
     }
 
-public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
+    public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
         for (TrainDeparture departure : departures) {
             if (departure.getTrainNumber() == trainNumber) {
                 return departure;
@@ -34,7 +37,6 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
         return result;
     }
 
-
     public void setTrack(TrainDeparture departure, int track) {
         departure.setTrack(track);
     }
@@ -43,17 +45,17 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
         departure.setDelay(minutes);
     }
 
-    public String toString() {
-        String result = "";
-        for (TrainDeparture departure : departures) {
-            result += departure.toString() + "\n";
-        }
-        return result;
+    public void removeDeparturesBefore(LocalTime time) {
+        departures.removeIf(departure -> departure.getDelayedDepartureTime().isBefore(time));
     }
 
-    public void GenerateSampleDepartures(){
+    public void removeDeparture(TrainDeparture departure) {
+        departures.remove(departure);
+    }
+
+    public void generateSampleDepartures() {
         addDeparture(new TrainDeparture(
-                LocalTime.of(11,1),
+                LocalTime.of(11, 1),
                 "L1",
                 1,
                 "Oslo",
@@ -61,7 +63,7 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
                 2)
         );
         addDeparture(new TrainDeparture(
-                LocalTime.of(11,16),
+                LocalTime.of(11, 16),
                 "L2",
                 2,
                 "Trondheim",
@@ -69,7 +71,7 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
                 0)
         );
         addDeparture(new TrainDeparture(
-                LocalTime.of(11,48),
+                LocalTime.of(11, 48),
                 "L3",
                 3,
                 "Sandnes",
@@ -77,7 +79,7 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
                 40)
         );
         addDeparture(new TrainDeparture(
-                LocalTime.of(12,4),
+                LocalTime.of(12, 4),
                 "L1",
                 4,
                 "Kragerø",
@@ -85,7 +87,7 @@ public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
                 0)
         );
         addDeparture(new TrainDeparture(
-                LocalTime.of(12,28),
+                LocalTime.of(12, 28),
                 "L3",
                 5,
                 "Kristiansand",

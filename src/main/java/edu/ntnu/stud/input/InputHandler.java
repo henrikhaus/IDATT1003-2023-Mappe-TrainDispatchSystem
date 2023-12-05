@@ -10,19 +10,16 @@ import java.util.Scanner;
 public class InputHandler {
     private static final Scanner scanner = new Scanner(System.in);
     public enum InputType {
-        DEPARTURE,
         DEPARTURE_TIME,
         LINE,
         TRAIN_NUMBER,
         DESTINATION,
         TRACK,
         DELAY,
-
     }
 
     public static Object getUserInput (InputType type) {
         return switch (type) {
-            case DEPARTURE -> getDepartureInput();
             case DEPARTURE_TIME -> getDepartureTimeInput();
             case LINE -> getLineInput();
             case TRAIN_NUMBER -> getTrainNumberInput();
@@ -30,16 +27,6 @@ public class InputHandler {
             case TRACK -> getTrackInput();
             case DELAY -> getDelayInput();
         };
-    }
-
-    private static TrainDeparture getDepartureInput() {
-        LocalTime departureTime = getDepartureTimeInput();
-        String line = getLineInput();
-        int trainNumber = getTrainNumberInput();
-        String destination = getDestinationInput();
-        int track = getTrackInput();
-        int delay = getDelayInput();
-        return new TrainDeparture(departureTime, line, trainNumber, destination, track, delay);
     }
 
     private static LocalTime getDepartureTimeInput() {

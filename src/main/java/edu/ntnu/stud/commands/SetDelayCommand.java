@@ -4,8 +4,6 @@ import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
 
-import java.time.LocalTime;
-
 import static edu.ntnu.stud.input.InputHandler.InputType.*;
 
 public class SetDelayCommand extends Command{
@@ -16,6 +14,8 @@ public class SetDelayCommand extends Command{
     @Override
     public void execute(TrainDepartureManager manager) {
         TrainDeparture departure = null;
+
+        // Train number must exist
         while (departure == null) {
             int trainNumber = (int) InputHandler.getUserInput(TRAIN_NUMBER);
             departure = manager.getDepartureByTrainNumber(trainNumber);
