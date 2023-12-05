@@ -2,6 +2,8 @@ package edu.ntnu.stud.utils;
 
 import edu.ntnu.stud.constants.Colors;
 import edu.ntnu.stud.models.TrainDeparture;
+
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -18,13 +20,14 @@ public class DepartureTableRenderer {
     /**
      * Renders a table for a list of train departures.
      *
-     * @param departures The list of train departures.
+     * @param departures  The list of train departures sorted by departure time.
+     * @param currentTime The current time.
      * @return A string representing the formatted departure table.
      */
-    public static String renderDepartureTable(List<TrainDeparture> departures) {
+    public static String renderDepartureTable(List<TrainDeparture> departures, LocalTime currentTime) {
         StringBuilder output = new StringBuilder();
         int[] lengths = departureDetailLengths(departures, true);
-        output.append(renderHeader(lengths));
+        output.append(renderHeader(lengths, currentTime));
         lengths = departureDetailLengths(departures, false);
         for (TrainDeparture departure : departures) {
             output.append(renderTrainDeparture(departure, lengths));
@@ -70,16 +73,18 @@ public class DepartureTableRenderer {
     /**
      * Creates the header row for the departure table.
      *
-     * @param lengths An array of maximum lengths for each column.
+     * @param lengths     An array of maximum lengths for each column.
+     * @param currentTime The current time.
      * @return A formatted header row string.
      */
-    private static String renderHeader(int[] lengths) {
+    private static String renderHeader(int[] lengths, LocalTime currentTime) {
         String headerFormat = "%-" + SPACING + "s %-"
                 + (lengths[0] + SPACING) + "s %-"
                 + (lengths[1] + lengths[2] + SPACING - 1) + "s %-"
                 + (lengths[3] + SPACING) + "s %-"
                 + (lengths[4] + SPACING + 2) + "s %-"
-                + (lengths[5] + SPACING) + "s %s";
+                + (lengths[5] + SPACING)
+                + "s %s  " + Colors.GRAY + "(%s)" + Colors.RESET + "\n";
         return String.format(headerFormat,
                 SIDE_FRAME,
                 "Time",
@@ -87,7 +92,8 @@ public class DepartureTableRenderer {
                 "Train",
                 "Track",
                 "Delay",
-                SIDE_FRAME + "\n");
+                SIDE_FRAME,
+                currentTime);
     }
 
     /**
@@ -118,7 +124,7 @@ public class DepartureTableRenderer {
         lengths[2] = Math.max(lengths[2], MIN_DESTINATION_LENGTH) + resetCodeLength;
         lengths[3] = Math.max(lengths[3], MIN_TRAIN_NUMBER_LENGTH);
         lengths[4] = Math.max(lengths[4], MIN_TRACK_NUMBER_LENGTH);
-        lengths[5] += colorCodeLength + resetCodeLength + 3; // " min" is 3 chars
+        lengths[5] += colorCodeLength + resetCodeLength + 3; // "min" is 3 chars
 
         return lengths;
     }

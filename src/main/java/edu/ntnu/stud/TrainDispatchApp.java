@@ -30,7 +30,8 @@ public class TrainDispatchApp {
                 new NewDepartureCommand(),
                 new SetDelayCommand(),
                 new ExitCommand(),
-                new ShowDepartureTableCommand()
+                new ShowDepartureTableCommand(),
+                new SetTimeCommand()
         };
     }
 

@@ -1,26 +1,16 @@
 package edu.ntnu.stud.input;
 
 import edu.ntnu.stud.constants.Colors;
-import edu.ntnu.stud.constants.Regex;
-import edu.ntnu.stud.models.TrainDeparture;
 
 import java.time.LocalTime;
 import java.util.Scanner;
 
 public class InputHandler {
     private static final Scanner scanner = new Scanner(System.in);
-    public enum InputType {
-        DEPARTURE_TIME,
-        LINE,
-        TRAIN_NUMBER,
-        DESTINATION,
-        TRACK,
-        DELAY,
-    }
 
-    public static Object getUserInput (InputType type) {
+    public static Object getUserInput(InputType type) {
         return switch (type) {
-            case DEPARTURE_TIME -> getDepartureTimeInput();
+            case TIME -> getTimeInput();
             case LINE -> getLineInput();
             case TRAIN_NUMBER -> getTrainNumberInput();
             case DESTINATION -> getDestinationInput();
@@ -29,9 +19,9 @@ public class InputHandler {
         };
     }
 
-    private static LocalTime getDepartureTimeInput() {
+    private static LocalTime getTimeInput() {
         while (true) {
-            System.out.print("Enter departure time: " + Colors.GRAY + "(hh:mm) " + Colors.RESET);
+            System.out.print("Enter time: " + Colors.GRAY + "(hh:mm) " + Colors.RESET);
             String input = scanner.nextLine();
             try {
                 return LocalTime.parse(input);
@@ -114,5 +104,14 @@ public class InputHandler {
                 System.out.println("Invalid input, please enter a valid number or leave blank.");
             }
         }
+    }
+
+    public enum InputType {
+        TIME,
+        LINE,
+        TRAIN_NUMBER,
+        DESTINATION,
+        TRACK,
+        DELAY,
     }
 }

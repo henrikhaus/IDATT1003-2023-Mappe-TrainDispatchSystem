@@ -7,6 +7,7 @@ import java.util.List;
 
 public class TrainDepartureManager {
     private List<TrainDeparture> departures = new ArrayList<>();
+    private LocalTime currentTime = LocalTime.of(10, 0);
 
     public void addDeparture(TrainDeparture departure) {
         departures.add(departure);
@@ -49,8 +50,13 @@ public class TrainDepartureManager {
         departures.removeIf(departure -> departure.getDelayedDepartureTime().isBefore(time));
     }
 
-    public void removeDeparture(TrainDeparture departure) {
-        departures.remove(departure);
+    public LocalTime getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(LocalTime time) {
+        currentTime = time;
+        removeDeparturesBefore(currentTime);
     }
 
     public void generateSampleDepartures() {

@@ -16,7 +16,7 @@ public class NewDepartureCommand extends Command {
     @Override
     public void execute(TrainDepartureManager manager) {
 
-        LocalTime departureTime = (LocalTime) InputHandler.getUserInput(DEPARTURE_TIME);
+        LocalTime departureTime = (LocalTime) InputHandler.getUserInput(TIME);
         String line = (String) InputHandler.getUserInput(LINE);
 
         // Train number must be unique
