@@ -16,7 +16,20 @@ public class InputHandler {
             case DESTINATION -> getDestinationInput();
             case TRACK -> getTrackInput();
             case DELAY -> getDelayInput();
+            case INTEGER -> getIntegerInput();
         };
+    }
+
+    private static Object getIntegerInput() {
+        while (true) {
+            System.out.print("Enter number: ");
+            String input = scanner.nextLine();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, please enter a valid number");
+            }
+        }
     }
 
     private static LocalTime getTimeInput() {
@@ -113,5 +126,6 @@ public class InputHandler {
         DESTINATION,
         TRACK,
         DELAY,
+        INTEGER
     }
 }

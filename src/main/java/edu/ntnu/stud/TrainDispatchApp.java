@@ -28,6 +28,7 @@ public class TrainDispatchApp {
     public static Command[] generateCommands() {
         return new Command[]{
                 new NewDepartureCommand(),
+                new FindDepartureCommand(),
                 new SetDelayCommand(),
                 new ExitCommand(),
                 new ShowDepartureTableCommand(),
