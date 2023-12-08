@@ -1,17 +1,20 @@
 package edu.ntnu.stud.commands;
 
+import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
  * A command to exit the program.
  */
 public class ExitCommand extends Command {
+    private final TrainDispatchApp app;
 
     /**
      * Constructs an ExitCommand.
      */
-    public ExitCommand() {
+    public ExitCommand(TrainDispatchApp app) {
         super("exit", "Exits the program");
+        this.app = app;
     }
 
     /**
@@ -23,6 +26,6 @@ public class ExitCommand extends Command {
     @Override
     public void execute(TrainDepartureManager manager) {
         System.out.println("Exiting program...");
-        System.exit(0);
+        app.stop();
     }
 }

@@ -14,6 +14,7 @@ public class TrainDispatchApp {
     private final TrainDepartureManager manager;
     private final Scanner scanner = new Scanner(System.in);
     private final Command[] commands = generateCommands();
+    private boolean isRunning = true;
 
     public TrainDispatchApp() {
         this.manager = new TrainDepartureManager();
@@ -25,33 +26,39 @@ public class TrainDispatchApp {
         app.start();
     }
 
-    public static Command[] generateCommands() {
-        return new Command[]{
-                new ShowDepartureTableCommand(),
-                new FindDepartureCommand(),
-                new NewDepartureCommand(),
-                new SetTrackCommand(),
-                new SetDelayCommand(),
-                new SetTimeCommand(),
-                new ExitCommand(),
-        };
+    public void stop() {
+        this.isRunning = false;
     }
 
     private void init() {
         manager.generateSampleDepartures();
     }
 
-    public void start() {
+    private void start() {
         System.out.println("Welcome to the train dispatch application!");
-        while (true) {
-            System.out.println("Commands:");
-            for (int i = 0; i < commands.length; i++) {
-                System.out.printf("[%s] %s - %s%n", i + 1, commands[i].getName(),
-                        commands[i].getDescription());
-            }
+        while (isRunning) {
+            delayForReadability();
+            displayCommands();
             System.out.print("Input command: ");
             final String command = scanner.nextLine();
             executeCommand(command);
+        }
+        System.out.println("Goodbye!");
+        System.exit(0);
+    }
+
+    private void delayForReadability() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ignored) {
+        }
+    }
+
+    private void displayCommands() {
+        System.out.println("Commands:");
+        for (int i = 0; i < commands.length; i++) {
+            System.out.printf("[%s] %s - %s%n", i + 1, commands[i].getName(),
+                    commands[i].getDescription());
         }
     }
 
@@ -75,5 +82,17 @@ public class TrainDispatchApp {
             System.out.printf("\nPlease input a number 1-%d, or write the command name.\n\n",
                     commands.length);
         }
+    }
+
+    private Command[] generateCommands() {
+        return new Command[]{
+                new ShowDepartureTableCommand(),
+                new FindDepartureCommand(),
+                new NewDepartureCommand(),
+                new SetTrackCommand(),
+                new SetDelayCommand(),
+                new SetTimeCommand(),
+                new ExitCommand(this),
+        };
     }
 }
