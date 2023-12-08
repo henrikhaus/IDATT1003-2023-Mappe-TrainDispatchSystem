@@ -30,6 +30,7 @@ public class TrainDispatchApp {
                 new ShowDepartureTableCommand(),
                 new FindDepartureCommand(),
                 new NewDepartureCommand(),
+                new SetTrackCommand(),
                 new SetDelayCommand(),
                 new SetTimeCommand(),
                 new ExitCommand(),
@@ -41,6 +42,7 @@ public class TrainDispatchApp {
     }
 
     public void start() {
+        System.out.println("Welcome to the train dispatch application!");
         while (true) {
             System.out.println("Commands:");
             for (int i = 0; i < commands.length; i++) {
