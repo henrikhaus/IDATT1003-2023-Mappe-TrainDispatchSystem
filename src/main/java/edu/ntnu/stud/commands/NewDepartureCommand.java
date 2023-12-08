@@ -1,5 +1,6 @@
 package edu.ntnu.stud.commands;
 
+import edu.ntnu.stud.constants.Colors;
 import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
@@ -8,30 +9,47 @@ import java.time.LocalTime;
 
 import static edu.ntnu.stud.input.InputHandler.InputType.*;
 
+/**
+ * A command to create a new departure.
+ */
 public class NewDepartureCommand extends Command {
+
+    /**
+     * Constructs a NewDepartureCommand.
+     */
     public NewDepartureCommand() {
         super("new", "Creates a new departure");
     }
 
+    /**
+     * Executes the command to create a new departure.
+     * This method will prompt the user for input to create a new departure.
+     *
+     * @param manager The TrainDepartureManager instance.
+     */
     @Override
     public void execute(TrainDepartureManager manager) {
 
         LocalTime departureTime = (LocalTime) InputHandler.getUserInput(TIME);
         String line = (String) InputHandler.getUserInput(LINE);
+        int trainNumber = getUniqueTrainNumber(manager);
+        String destination = (String) InputHandler.getUserInput(DESTINATION);
+        System.out.print(Colors.GRAY + "(Optional) " + Colors.RESET);
+        int track = (int) InputHandler.getUserInput(TRACK);
+        System.out.print(Colors.GRAY + "(Optional) " + Colors.RESET);
+        int delay = (int) InputHandler.getUserInput(DELAY);
 
-        // Train number must be unique
+        TrainDeparture departure = new TrainDeparture(departureTime, line, trainNumber, destination, track, delay);
+        manager.addDeparture(departure);
+        System.out.println("Departure added successfully");
+    }
+
+    private int getUniqueTrainNumber(TrainDepartureManager manager) {
         int trainNumber = (int) InputHandler.getUserInput(TRAIN_NUMBER);
         while (manager.getDepartureByTrainNumber(trainNumber) != null) {
             System.out.printf("Train number %d is already in use. ", trainNumber);
             trainNumber = (int) InputHandler.getUserInput(TRAIN_NUMBER);
         }
-
-        String destination = (String) InputHandler.getUserInput(DESTINATION);
-        int track = (int) InputHandler.getUserInput(TRACK);
-        int delay = (int) InputHandler.getUserInput(DELAY);
-        TrainDeparture departure = new TrainDeparture(departureTime, line, trainNumber, destination, track, delay);
-
-        manager.addDeparture(departure);
-        System.out.println("Departure added successfully");
+        return trainNumber;
     }
 }

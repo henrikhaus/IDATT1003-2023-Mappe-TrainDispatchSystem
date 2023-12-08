@@ -5,9 +5,19 @@ import edu.ntnu.stud.constants.Colors;
 import java.time.LocalTime;
 import java.util.Scanner;
 
+/**
+ * Handles various types of user inputs.
+ */
 public class InputHandler {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final int MAX_DELAY_MIN = 300;
 
+    /**
+     * Gets user input based on the specified type.
+     *
+     * @param type The type of input to be retrieved.
+     * @return The user input in the appropriate format as an object.
+     */
     public static Object getUserInput(InputType type) {
         return switch (type) {
             case TIME -> getTimeInput();
@@ -23,7 +33,7 @@ public class InputHandler {
     private static Object getIntegerInput() {
         while (true) {
             System.out.print("Enter number: ");
-            String input = scanner.nextLine();
+            String input = SCANNER.nextLine();
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
@@ -35,7 +45,7 @@ public class InputHandler {
     private static LocalTime getTimeInput() {
         while (true) {
             System.out.print("Enter time: " + Colors.GRAY + "(hh:mm) " + Colors.RESET);
-            String input = scanner.nextLine();
+            String input = SCANNER.nextLine();
             try {
                 return LocalTime.parse(input);
             } catch (Exception e) {
@@ -47,7 +57,7 @@ public class InputHandler {
     private static String getLineInput() {
         while (true) {
             System.out.print("Enter line: ");
-            String input = scanner.nextLine();
+            String input = SCANNER.nextLine();
             if (!input.trim().isEmpty()) {
                 return input;
             }
@@ -58,7 +68,7 @@ public class InputHandler {
     private static int getTrainNumberInput() {
         while (true) {
             System.out.print("Enter train number: ");
-            String input = scanner.nextLine();
+            String input = SCANNER.nextLine();
             try {
                 int number = Integer.parseInt(input);
                 if (number >= 1) {
@@ -74,7 +84,7 @@ public class InputHandler {
     private static String getDestinationInput() {
         while (true) {
             System.out.print("Enter name of destination: ");
-            String input = scanner.nextLine();
+            String input = SCANNER.nextLine();
             if (!input.trim().isEmpty()) {
                 return input;
             }
@@ -85,7 +95,7 @@ public class InputHandler {
     private static int getTrackInput() {
         while (true) {
             System.out.print("Enter track number: ");
-            String input = scanner.nextLine();
+            String input = SCANNER.nextLine();
             if (input.trim().isEmpty()) {
                 return 0;
             }
@@ -100,7 +110,7 @@ public class InputHandler {
     private static int getDelayInput() {
         while (true) {
             System.out.print("Enter delay in minutes: ");
-            String input = scanner.nextLine().trim();
+            String input = SCANNER.nextLine().trim();
 
             if (input.isEmpty()) {
                 return 0;
@@ -108,17 +118,20 @@ public class InputHandler {
 
             try {
                 int delay = Integer.parseInt(input);
-                if (delay > 1 && delay < 300) {
+                if (delay >= 1 && delay <= MAX_DELAY_MIN) {
                     return delay;
                 } else {
-                    System.out.println("Please enter a valid delay between 1 and 300 minutes.");
+                    System.out.printf("Please enter a valid delay between 1 and %s minutes.\n", MAX_DELAY_MIN);
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input, please enter a valid number or leave blank.");
+                System.out.println("Invalid input, please enter a valid number.");
             }
         }
     }
 
+    /**
+     * Enum for the types of input that can be handled.
+     */
     public enum InputType {
         TIME,
         LINE,
