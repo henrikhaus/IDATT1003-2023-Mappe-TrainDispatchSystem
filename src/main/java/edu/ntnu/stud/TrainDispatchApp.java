@@ -7,15 +7,20 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * This is the main class for the train dispatch application.
+ * Main class for the train dispatch application.
+ * This class handles the initialization and execution of the application,
+ * including the management of user commands and interaction with the TrainDepartureManager.
  */
 public class TrainDispatchApp {
-
     private final TrainDepartureManager manager;
     private final Scanner scanner = new Scanner(System.in);
     private final Command[] commands = generateCommands();
     private boolean isRunning = true;
 
+    /**
+     * Constructs a new TrainDispatchApp.
+     * Initializes the train departure manager.
+     */
     public TrainDispatchApp() {
         this.manager = new TrainDepartureManager();
     }
@@ -26,6 +31,9 @@ public class TrainDispatchApp {
         app.start();
     }
 
+    /**
+     * Stops the application by setting the running flag to false.
+     */
     public void stop() {
         this.isRunning = false;
     }
@@ -43,7 +51,6 @@ public class TrainDispatchApp {
             final String command = scanner.nextLine();
             executeCommand(command);
         }
-        System.out.println("Goodbye!");
         System.exit(0);
     }
 
@@ -62,14 +69,20 @@ public class TrainDispatchApp {
         }
     }
 
+    /**
+     * Executes the command based on the user input.
+     * The command can be specified either by number or by its name.
+     *
+     * @param command The command input from the user.
+     */
     private void executeCommand(String command) {
         try {
-            //Find command by index
+            // Attempt to parse the command as an integer (command index)
             int commandIndex = Integer.parseInt(command) - 1;
 
             commands[commandIndex].execute(manager);
         } catch (NumberFormatException ignored) {
-            //Find command by name
+            // If parsing fails, treat the input as a command name
             Arrays.stream(commands)
                     .filter(c -> c.getName().equals(command))
                     .findFirst()
@@ -78,7 +91,7 @@ public class TrainDispatchApp {
                             () -> System.out.printf("\nUnknown command: \"%s\", try again.%n\n", command
                             ));
         } catch (IndexOutOfBoundsException e) {
-            //Invalid index
+            // Handle invalid command indices
             System.out.printf("\nPlease input a number 1-%d, or write the command name.\n\n",
                     commands.length);
         }
