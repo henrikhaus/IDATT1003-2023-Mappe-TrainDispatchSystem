@@ -43,7 +43,7 @@ public class TrainDispatchApp {
     }
 
     private void start() {
-        System.out.println("Welcome to the train dispatch application!");
+        System.out.println("\nWelcome to the train dispatch application!");
         while (isRunning) {
             delayForReadability();
             displayCommands();
@@ -56,7 +56,7 @@ public class TrainDispatchApp {
 
     private void delayForReadability() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1200);
         } catch (InterruptedException ignored) {
         }
     }
@@ -102,6 +102,7 @@ public class TrainDispatchApp {
                 new ShowDepartureTableCommand(),
                 new FindDepartureCommand(),
                 new NewDepartureCommand(),
+                new RemoveDepartureCommand(),
                 new SetTrackCommand(),
                 new SetDelayCommand(),
                 new SetTimeCommand(),

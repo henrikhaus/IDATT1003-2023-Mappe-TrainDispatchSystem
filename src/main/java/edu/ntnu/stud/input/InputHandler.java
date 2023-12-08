@@ -118,10 +118,10 @@ public class InputHandler {
 
             try {
                 int delay = Integer.parseInt(input);
-                if (delay >= 1 && delay <= MAX_DELAY_MIN) {
+                if (delay >= 0 && delay <= MAX_DELAY_MIN) {
                     return delay;
                 } else {
-                    System.out.printf("Please enter a valid delay between 1 and %s minutes.\n", MAX_DELAY_MIN);
+                    System.out.printf("Please enter a valid delay between 0 and %s minutes.\n", MAX_DELAY_MIN);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input, please enter a valid number.");

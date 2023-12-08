@@ -92,6 +92,15 @@ public class TrainDepartureManager {
     }
 
     /**
+     * Removes a specific train departure from the manager.
+     *
+     * @param departure The TrainDeparture to remove.
+     */
+    public void removeDeparture(TrainDeparture departure) {
+        departures.remove(departure);
+    }
+
+    /**
      * Gets the current time in the manager.
      *
      * @return The current time.
