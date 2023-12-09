@@ -1,11 +1,11 @@
 package edu.ntnu.stud.commands;
 
+import static edu.ntnu.stud.input.InputHandler.InputType.DELAY;
+import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
+
 import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
-
-import static edu.ntnu.stud.input.InputHandler.InputType.DELAY;
-import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
 
 /**
  * A command to set a delay to a departure.
@@ -31,7 +31,8 @@ public class SetDelayCommand extends Command {
     int delay = (int) InputHandler.getUserInput(DELAY);
 
     manager.setDelay(departure, delay);
-    System.out.printf("Delay for train number %d set to %d minutes.%n", departure.getTrainNumber(), delay);
+    System.out.printf("Delay for train number %d set to %d minutes.%n",
+        departure.getTrainNumber(), delay);
   }
 
   private TrainDeparture getDepartureByTrainNumber(TrainDepartureManager manager) {

@@ -1,13 +1,17 @@
 package edu.ntnu.stud.commands;
 
+import static edu.ntnu.stud.input.InputHandler.InputType.DELAY;
+import static edu.ntnu.stud.input.InputHandler.InputType.DESTINATION;
+import static edu.ntnu.stud.input.InputHandler.InputType.LINE;
+import static edu.ntnu.stud.input.InputHandler.InputType.TIME;
+import static edu.ntnu.stud.input.InputHandler.InputType.TRACK;
+import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
+
 import edu.ntnu.stud.constants.Colors;
 import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
-
 import java.time.LocalTime;
-
-import static edu.ntnu.stud.input.InputHandler.InputType.*;
 
 /**
  * A command to create a new departure.
@@ -39,7 +43,8 @@ public class NewDepartureCommand extends Command {
     System.out.print(Colors.GRAY + "(Optional) " + Colors.RESET);
     int delay = (int) InputHandler.getUserInput(DELAY);
 
-    TrainDeparture departure = new TrainDeparture(departureTime, line, trainNumber, destination, track, delay);
+    TrainDeparture departure = new TrainDeparture(departureTime, line, trainNumber, destination,
+        track, delay);
     manager.addDeparture(departure);
     System.out.println("Departure added successfully");
   }

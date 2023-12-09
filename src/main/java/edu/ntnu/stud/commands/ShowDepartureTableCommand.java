@@ -23,6 +23,8 @@ public class ShowDepartureTableCommand extends Command {
    */
   @Override
   public void execute(TrainDepartureManager manager) {
-    System.out.println(DepartureTableRenderer.renderDepartureTable(manager.getDepartures(), manager.getCurrentTime()));
+    System.out.println(DepartureTableRenderer.renderDepartureTable(manager.getDepartures(),
+        manager.getCurrentTime())
+    );
   }
 }

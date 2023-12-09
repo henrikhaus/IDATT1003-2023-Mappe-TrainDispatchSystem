@@ -2,7 +2,6 @@ package edu.ntnu.stud.utils;
 
 import edu.ntnu.stud.constants.Colors;
 import edu.ntnu.stud.models.TrainDeparture;
-
 import java.time.LocalTime;
 import java.util.List;
 
@@ -24,17 +23,20 @@ public class DepartureTableRenderer {
    * @param currentTime The current time.
    * @return A string representing the formatted departure table.
    */
-  public static String renderDepartureTable(List<TrainDeparture> departures, LocalTime currentTime) {
+  public static String renderDepartureTable(List<TrainDeparture> departures,
+                                            LocalTime currentTime) {
     StringBuilder output = new StringBuilder();
     int[] headerLengths = departureDetailLengths(departures, true);
     output.append(renderHeader(headerLengths, currentTime));
     int[] departureDetailLengths = departureDetailLengths(departures, false);
     departures.stream()
         .limit(TABLE_ROWS)
-        .forEach(departure -> output.append(renderTrainDeparture(departure, departureDetailLengths)));
+        .forEach(departure -> output
+            .append(renderTrainDeparture(departure, departureDetailLengths)));
 
     if (RENDER_EMPTY_ROWS) {
-      output.append(String.valueOf(renderEmptyLine(headerLengths)).repeat(Math.max(0, TABLE_ROWS - departures.size())));
+      output.append(String.valueOf(renderEmptyLine(headerLengths))
+          .repeat(Math.max(0, TABLE_ROWS - departures.size())));
     }
     return output.toString();
   }
@@ -53,7 +55,8 @@ public class DepartureTableRenderer {
     String renderDestination = departure.getDestination() + Colors.RESET;
     String renderTrainNumber = String.valueOf(departure.getTrainNumber());
     String renderTrack = (departure.getTrack() > 0) ? String.valueOf(departure.getTrack()) : "";
-    String renderDelay = Colors.YELLOW + ((departure.getDelay() != 0) ? departure.getDelay() + " min" : "") + Colors.RESET;
+    String renderDelay = Colors.YELLOW
+        + ((departure.getDelay() != 0) ? departure.getDelay() + " min" : "") + Colors.RESET;
 
     String departureRowFormat = "%-" + SPACING + "s %-"
         + (lengths[0] + SPACING) + "s %-"
@@ -81,11 +84,13 @@ public class DepartureTableRenderer {
    * @return A formatted empty row string.
    */
   private static String renderEmptyLine(int[] lengths) {
-    String departureRowFormat = "%-" + SPACING + "s" + Colors.GRAY + " %-" + SPACING + "s" + Colors.RESET + "  %s";
+    String departureRowFormat =
+        "%-" + SPACING + "s" + Colors.GRAY + " %-" + SPACING + "s" + Colors.RESET + "  %s";
 
     return String.format(departureRowFormat,
         SIDE_FRAME,
-        "-".repeat(lengths[0] + lengths[1] + lengths[2] + lengths[3] + lengths[4] + lengths[5] + SPACING * 6 + 2),
+        "-".repeat(lengths[0] + lengths[1] + lengths[2] + lengths[3] + lengths[4] + lengths[5]
+            + SPACING * 6 + 2),
         SIDE_FRAME + "\n");
   }
 
@@ -124,8 +129,8 @@ public class DepartureTableRenderer {
    */
   private static int[] departureDetailLengths(List<TrainDeparture> departures, boolean header) {
     final int[] lengths = new int[6];
-    final int resetCodeLength = (header) ? 0 : Colors.RESET.length(); // Length of resetting ANSI color code
-    final int colorCodeLength = (header) ? 0 : Colors.GREEN.length(); // Length of one ANSI color code
+    final int resetCodeLength = (header) ? 0 : Colors.RESET.length(); // Length of reset color code
+    final int colorCodeLength = (header) ? 0 : Colors.GREEN.length(); // Length of ANSI color code
 
     // Minimum lengths for each column
     final int minTimeLength = 3;

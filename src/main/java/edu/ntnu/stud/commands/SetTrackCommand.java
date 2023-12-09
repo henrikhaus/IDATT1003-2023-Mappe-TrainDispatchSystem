@@ -1,11 +1,11 @@
 package edu.ntnu.stud.commands;
 
+import static edu.ntnu.stud.input.InputHandler.InputType.TRACK;
+import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
+
 import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
-
-import static edu.ntnu.stud.input.InputHandler.InputType.TRACK;
-import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
 
 /**
  * A command to set a track to a departure.

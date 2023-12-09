@@ -1,13 +1,12 @@
 package edu.ntnu.stud.commands;
 
+import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
+
 import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
 import edu.ntnu.stud.utils.DepartureTableRenderer;
-
 import java.util.List;
-
-import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
 
 /**
  * A command to find a departure.
@@ -58,13 +57,19 @@ public class FindDepartureCommand extends Command {
         System.out.printf("No departure with train number %d\n", trainNumber);
       }
     }
-    System.out.println(DepartureTableRenderer.renderDepartureTable(List.of(departure), manager.getCurrentTime()));
+    System.out.println(DepartureTableRenderer.renderDepartureTable(List.of(departure),
+        manager.getCurrentTime()));
   }
 
   private void findDepartureByDestination(TrainDepartureManager manager) {
     String destination = (String) InputHandler.getUserInput(InputHandler.InputType.DESTINATION);
     List<TrainDeparture> departures = manager.getDeparturesByDestination(destination);
-    System.out.printf("\nFound %d departure%s to %s:\n", departures.size(), (departures.size() == 1) ? "" : "s", destination);
-    System.out.println(DepartureTableRenderer.renderDepartureTable(departures, manager.getCurrentTime()));
+    System.out.printf("\nFound %d departure%s to %s:\n",
+        departures.size(),
+        (departures.size() == 1) ? "" : "s",
+        destination
+    );
+    System.out.println(DepartureTableRenderer.renderDepartureTable(departures,
+        manager.getCurrentTime()));
   }
 }

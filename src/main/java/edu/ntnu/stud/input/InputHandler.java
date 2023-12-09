@@ -1,7 +1,6 @@
 package edu.ntnu.stud.input;
 
 import edu.ntnu.stud.constants.Colors;
-
 import java.time.LocalTime;
 import java.util.Scanner;
 
@@ -74,9 +73,10 @@ public class InputHandler {
         if (number >= 1) {
           return number;
         }
-        System.out.println("Train number cannot be less than 1. Please enter a valid train number.");
+        System.out.println(
+            "Train number cannot be less than 1. Please enter a valid train number.");
       } catch (NumberFormatException e) {
-        System.out.println("Invalid input, please enter a valid number");
+        System.out.println("Invalid input, please enter a valid number.");
       }
     }
   }
@@ -111,7 +111,7 @@ public class InputHandler {
     while (true) {
       System.out.print("Enter delay in minutes: ");
       String input = SCANNER.nextLine().trim();
-      
+
       if (input.isEmpty()) {
         return 0;
       }
@@ -121,7 +121,7 @@ public class InputHandler {
         if (delay >= 0 && delay <= MAX_DELAY_MIN) {
           return delay;
         } else {
-          System.out.printf("Please enter a valid delay between 0 and %s minutes.\n", MAX_DELAY_MIN);
+          System.out.printf("Please enter a valid delay from 0 to %s minutes.\n", MAX_DELAY_MIN);
         }
       } catch (NumberFormatException e) {
         System.out.println("Invalid input, please enter a valid number.");

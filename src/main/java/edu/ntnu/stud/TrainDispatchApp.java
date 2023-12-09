@@ -1,8 +1,17 @@
 package edu.ntnu.stud;
 
-import edu.ntnu.stud.commands.*;
-import edu.ntnu.stud.models.TrainDepartureManager;
+// Single class import instead of * import for checkstyle compliance
 
+import edu.ntnu.stud.commands.Command;
+import edu.ntnu.stud.commands.ExitCommand;
+import edu.ntnu.stud.commands.FindDepartureCommand;
+import edu.ntnu.stud.commands.NewDepartureCommand;
+import edu.ntnu.stud.commands.RemoveDepartureCommand;
+import edu.ntnu.stud.commands.SetDelayCommand;
+import edu.ntnu.stud.commands.SetTimeCommand;
+import edu.ntnu.stud.commands.SetTrackCommand;
+import edu.ntnu.stud.commands.ShowDepartureTableCommand;
+import edu.ntnu.stud.models.TrainDepartureManager;
 import java.util.Arrays;
 import java.util.Scanner;
 

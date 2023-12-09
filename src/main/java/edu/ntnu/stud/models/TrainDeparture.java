@@ -24,8 +24,8 @@ public class TrainDeparture {
    * @param track         The track number.
    * @param delay         The delay in minutes.
    */
-  public TrainDeparture(LocalTime departureTime, String line, int trainNumber, String destination, int track,
-                        int delay) {
+  public TrainDeparture(LocalTime departureTime, String line, int trainNumber, String destination,
+                        int track, int delay) {
     this.departureTime = departureTime;
     this.line = line;
     this.trainNumber = trainNumber;
@@ -122,7 +122,9 @@ public class TrainDeparture {
    */
   @Override
   public String toString() {
-    return String.format("Departure time: %s, Line: %s, TrainNumber: %d, Destination: %s, Track: %d, Delay: %d min",
-        departureTime, line, trainNumber, destination, track, delay);
+    return String.format(
+        "Departure time: %s, Line: %s, TrainNumber: %d, Destination: %s, Track: %d, Delay: %d min",
+        departureTime, line, trainNumber, destination, track, delay
+    );
   }
 }

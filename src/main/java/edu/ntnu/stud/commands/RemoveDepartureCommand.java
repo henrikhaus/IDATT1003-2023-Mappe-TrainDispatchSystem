@@ -1,10 +1,10 @@
 package edu.ntnu.stud.commands;
 
+import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
+
 import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
-
-import static edu.ntnu.stud.input.InputHandler.InputType.TRAIN_NUMBER;
 
 /**
  * A command to remove a departure.
@@ -28,7 +28,8 @@ public class RemoveDepartureCommand extends Command {
   public void execute(TrainDepartureManager manager) {
     TrainDeparture departure = getDepartureByTrainNumber(manager);
     manager.removeDeparture(departure);
-    System.out.printf("Departure with train number %d successfully removed.%n", departure.getTrainNumber());
+    System.out.printf("Departure with train number %d successfully removed.%n",
+        departure.getTrainNumber());
   }
 
   private TrainDeparture getDepartureByTrainNumber(TrainDepartureManager manager) {

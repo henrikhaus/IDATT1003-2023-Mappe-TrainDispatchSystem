@@ -1,11 +1,12 @@
 package edu.ntnu.stud.commands;
 
+import static edu.ntnu.stud.input.InputHandler.InputType.TIME;
+
 import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDepartureManager;
-
 import java.time.LocalTime;
 
-import static edu.ntnu.stud.input.InputHandler.InputType.TIME;
+
 
 /**
  * A command to set the time.
