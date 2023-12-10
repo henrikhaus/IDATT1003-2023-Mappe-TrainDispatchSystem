@@ -69,10 +69,16 @@ public class TrainDispatchApp {
     System.exit(0);
   }
 
+  /**
+   * Delays the thread for readability.
+   * This method is used to make the application easier to read by adding a delay between
+   * commands.
+   */
   private void delayForReadability() {
     try {
       Thread.sleep(1200);
     } catch (InterruptedException ignored) {
+      Thread.currentThread().interrupt();
     }
   }
 

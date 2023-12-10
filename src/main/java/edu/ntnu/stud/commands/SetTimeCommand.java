@@ -23,13 +23,22 @@ public class SetTimeCommand extends Command {
   /**
    * Executes the command to set the time.
    * This method will prompt the user for input to set the time.
+   * The time must be later than the current time.
    *
    * @param manager The TrainDepartureManager instance.
    */
   @Override
   public void execute(TrainDepartureManager manager) {
-    LocalTime time = (LocalTime) InputHandler.getUserInput(TIME);
-    manager.setCurrentTime(time);
-    System.out.printf("Time set successfully to %s.\n", time);
+    while (true) {
+      LocalTime time = (LocalTime) InputHandler.getUserInput(TIME);
+      if (time.isAfter(manager.getCurrentTime())) {
+        manager.setCurrentTime(time);
+        System.out.printf("Time set to %s\n", time);
+        break;
+      } else {
+        System.out.printf("The time must be later than the current time. Current time is %s.\n",
+            manager.getCurrentTime());
+      }
+    }
   }
 }
