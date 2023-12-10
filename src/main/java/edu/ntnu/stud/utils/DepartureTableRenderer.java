@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class DepartureTableRenderer {
 
-  //Configurable constants
+  // Configurable constants
   private static final int SPACING = 2; // Minimum 1
   private static final int TABLE_ROWS = 4; // Minimum 1
   private static final boolean RENDER_EMPTY_ROWS = true;

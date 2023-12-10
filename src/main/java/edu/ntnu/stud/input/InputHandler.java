@@ -29,7 +29,7 @@ public class InputHandler {
     };
   }
 
-  private static Object getIntegerInput() {
+  private static int getIntegerInput() {
     while (true) {
       System.out.print("Enter number: ");
       String input = SCANNER.nextLine();

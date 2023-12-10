@@ -80,30 +80,12 @@ public class TrainDeparture {
   }
 
   /**
-   * Sets the track number of the departure.
-   *
-   * @param track The new track number.
-   */
-  public void setTrack(int track) {
-    this.track = track;
-  }
-
-  /**
    * Gets the delay of the departure.
    *
    * @return The delay in minutes.
    */
   public int getDelay() {
     return delay;
-  }
-
-  /**
-   * Sets the delay of the departure.
-   *
-   * @param delay The new delay in minutes.
-   */
-  public void setDelay(int delay) {
-    this.delay = delay;
   }
 
   /**
@@ -116,7 +98,27 @@ public class TrainDeparture {
   }
 
   /**
-   * Returns a string representation of the departure.
+   * Sets the track number of the departure.
+   *
+   * @param track The new track number.
+   */
+  public void setTrack(int track) {
+    this.track = track;
+  }
+
+  /**
+   * Sets the delay of the departure.
+   *
+   * @param delay The new delay in minutes.
+   */
+  public void setDelay(int delay) {
+    this.delay = delay;
+  }
+
+
+
+  /**
+   * Returns a simple string representation of the departure for testing purposes.
    *
    * @return A string representation of the departure.
    */
