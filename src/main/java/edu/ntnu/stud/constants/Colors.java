@@ -14,6 +14,7 @@ public class Colors {
 
   /**
    * Converts a train line identifier to its corresponding color code.
+   * Proof of concept, made for future expansion.
    *
    * @param line The train line identifier (e.g., "L1", "L2").
    * @return The ANSI color code associated with the train line.

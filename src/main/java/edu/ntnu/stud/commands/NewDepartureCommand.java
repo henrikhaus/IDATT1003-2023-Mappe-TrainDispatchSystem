@@ -34,7 +34,7 @@ public class NewDepartureCommand extends Command {
   @Override
   public void execute(TrainDepartureManager manager) {
 
-    LocalTime departureTime = (LocalTime) InputHandler.getUserInput(TIME);
+    LocalTime departureTime = getValidDepartureTime(manager);
     String line = (String) InputHandler.getUserInput(LINE);
     int trainNumber = getUniqueTrainNumber(manager);
     String destination = (String) InputHandler.getUserInput(DESTINATION);
@@ -49,9 +49,19 @@ public class NewDepartureCommand extends Command {
     System.out.println("Departure added successfully");
   }
 
+  private LocalTime getValidDepartureTime(TrainDepartureManager manager) {
+    LocalTime departureTime = (LocalTime) InputHandler.getUserInput(TIME);
+    while (departureTime.isBefore(manager.getCurrentTime())) {
+      System.out.printf("Departure time cannot be before current time: %s\n",
+          manager.getCurrentTime());
+      departureTime = (LocalTime) InputHandler.getUserInput(TIME);
+    }
+    return departureTime;
+  }
+
   private int getUniqueTrainNumber(TrainDepartureManager manager) {
     int trainNumber = (int) InputHandler.getUserInput(TRAIN_NUMBER);
-    while (manager.getDepartureByTrainNumber(trainNumber) != null) {
+    while (!manager.isTrainNumberValid(trainNumber)) {
       System.out.printf("Train number %d is already in use. ", trainNumber);
       trainNumber = (int) InputHandler.getUserInput(TRAIN_NUMBER);
     }

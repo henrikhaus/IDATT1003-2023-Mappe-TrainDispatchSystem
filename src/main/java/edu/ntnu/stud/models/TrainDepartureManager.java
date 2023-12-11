@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class TrainDepartureManager {
   private final List<TrainDeparture> departures = new ArrayList<>();
-  private LocalTime currentTime = LocalTime.of(10, 0);
+  private LocalTime currentTime = LocalTime.MIN;
 
   /**
    * Adds a new train departure to the manager.
@@ -19,6 +19,9 @@ public class TrainDepartureManager {
    * @param departure The TrainDeparture to add.
    */
   public void addDeparture(TrainDeparture departure) {
+    assert isTrainNumberValid(departure.getTrainNumber()) : "Train number already in use";
+    assert departure.getDepartureTime().isAfter(currentTime)
+        : "Departure time cannot be before current time";
     departures.add(departure);
   }
 
@@ -69,6 +72,7 @@ public class TrainDepartureManager {
    * @param track     The new track number.
    */
   public void setTrack(TrainDeparture departure, int track) {
+    assert track >= 0 : "Track number cannot be less than 0";
     departure.setTrack(track);
   }
 
@@ -79,6 +83,7 @@ public class TrainDepartureManager {
    * @param minutes   The delay in minutes.
    */
   public void setDelay(TrainDeparture departure, int minutes) {
+    assert minutes >= 0 : "Delay cannot be less than 0";
     departure.setDelay(minutes);
   }
 
@@ -88,6 +93,7 @@ public class TrainDepartureManager {
    * @param time The time before which departures should be removed.
    */
   public void removeDeparturesBefore(LocalTime time) {
+    assert time != null : "Time cannot be null";
     departures.removeIf(departure -> departure.getDelayedDepartureTime().isBefore(time));
   }
 
@@ -97,6 +103,8 @@ public class TrainDepartureManager {
    * @param departure The TrainDeparture to remove.
    */
   public void removeDeparture(TrainDeparture departure) {
+    assert departure != null : "Departure cannot be null";
+    assert departures.contains(departure) : "Departure does not exist";
     departures.remove(departure);
   }
 
@@ -115,8 +123,20 @@ public class TrainDepartureManager {
    * @param time The new current time.
    */
   public void setCurrentTime(LocalTime time) {
+    assert time != null : "Time cannot be null";
+    assert time.isAfter(currentTime) : "Time cannot be before current time";
     currentTime = time;
     removeDeparturesBefore(currentTime);
+  }
+
+  /**
+   * Checks if a train number is valid, not already in use.
+   *
+   * @param trainNumber The train number to check.
+   * @return True if the train number is valid, false otherwise.
+   */
+  public boolean isTrainNumberValid(int trainNumber) {
+    return departures.stream().noneMatch(departure -> departure.getTrainNumber() == trainNumber);
   }
 
   /**

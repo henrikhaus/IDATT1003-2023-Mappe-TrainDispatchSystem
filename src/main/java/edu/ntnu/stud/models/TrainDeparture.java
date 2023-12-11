@@ -26,6 +26,13 @@ public class TrainDeparture {
    */
   public TrainDeparture(LocalTime departureTime, String line, int trainNumber, String destination,
                         int track, int delay) {
+    assert departureTime != null : "Departure time cannot be null";
+    assert line != null : "Line cannot be null";
+    assert destination != null : "Destination cannot be null";
+    assert trainNumber > 0 : "Train number cannot be less than 1";
+    assert track >= 0 : "Track number cannot be less than 0";
+    assert delay < 300 && delay >= 0 : "Delay cannot be less than 0 or greater than 300";
+
     this.departureTime = departureTime;
     this.line = line;
     this.trainNumber = trainNumber;
@@ -103,6 +110,7 @@ public class TrainDeparture {
    * @param track The new track number.
    */
   public void setTrack(int track) {
+    assert track >= 0 : "Track number cannot be less than 0";
     this.track = track;
   }
 
@@ -112,10 +120,9 @@ public class TrainDeparture {
    * @param delay The new delay in minutes.
    */
   public void setDelay(int delay) {
+    assert delay < 300 && delay >= 0 : "Delay cannot be less than 0 or greater than 300";
     this.delay = delay;
   }
-
-
 
   /**
    * Returns a simple string representation of the departure for testing purposes.
