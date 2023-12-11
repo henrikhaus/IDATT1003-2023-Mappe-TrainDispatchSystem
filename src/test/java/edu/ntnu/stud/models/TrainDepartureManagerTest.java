@@ -112,16 +112,15 @@ class TrainDepartureManagerTest {
     @Test
     @DisplayName("Test add departure with train number already in use")
     void testInvalidAddDeparture() {
-      var exception = assertThrows(AssertionError.class, () -> {
-        manager.addDeparture(new TrainDeparture(
-            LocalTime.of(10,0),
-            "L1",
-            1,
-            "Trondheim",
-            1,
-            0
-        ));
-      });
+      var exception = assertThrows(AssertionError.class,
+          () -> manager.addDeparture(new TrainDeparture(
+          LocalTime.of(10,0),
+          "L1",
+          1,
+          "Trondheim",
+          1,
+          0
+      )));
       assertEquals("Train number already in use", exception.getMessage());
     }
 
@@ -129,68 +128,61 @@ class TrainDepartureManagerTest {
     @DisplayName("Test add departure with invalid departure time")
     void testInvalidAddDepartureTime() {
       manager.setCurrentTime(LocalTime.of(11,0));
-      var exception = assertThrows(AssertionError.class, () -> {
-        manager.addDeparture(new TrainDeparture(
-            LocalTime.of(10,0),
-            "L3",
-            3,
-            "Oslo",
-            0,
-            0
-        ));
-      });
+      var exception = assertThrows(AssertionError.class,
+          () -> manager.addDeparture(new TrainDeparture(
+          LocalTime.of(10,0),
+          "L3",
+          3,
+          "Oslo",
+          0,
+          0
+      )));
       assertEquals("Departure time cannot be before current time", exception.getMessage());
     }
 
     @Test
     @DisplayName("Test remove departures before null value")
     void testNullRemoveDeparturesBefore() {
-      var exception = assertThrows(AssertionError.class, () -> {
-        manager.removeDeparturesBefore(null);
-      });
+      var exception = assertThrows(AssertionError.class,
+          () -> manager.removeDeparturesBefore(null));
       assertEquals("Time cannot be null", exception.getMessage());
     }
 
     @Test
     @DisplayName("Test remove departure with null value")
     void testNullRemoveDeparture() {
-      var exception = assertThrows(AssertionError.class, () -> {
-        manager.removeDeparture(null);
-      });
+      var exception = assertThrows(AssertionError.class, () -> manager.removeDeparture(null));
       assertEquals("Departure cannot be null", exception.getMessage());
     }
 
     @Test
     @DisplayName("Test remove departure that does not exist")
     void testInvalidRemoveDeparture() {
-      var exception = assertThrows(AssertionError.class, () -> {
-        manager.removeDeparture(new TrainDeparture(
-            LocalTime.of(10,0),
-            "L10",
-            1,
-            "Trondheim",
-            1,
-            0
-        ));
-      });
+      var exception = assertThrows(AssertionError.class,
+          () -> manager.removeDeparture(new TrainDeparture(
+          LocalTime.of(10,0),
+          "L10",
+          1,
+          "Trondheim",
+          1,
+          0
+      )));
       assertEquals("Departure does not exist", exception.getMessage());
     }
 
     @Test
     @DisplayName("Test setting current time as null")
     void testNullSetCurrentTime() {
-      var exception = assertThrows(AssertionError.class, () -> {
-        manager.setCurrentTime(null);
-      });
+      var exception = assertThrows(AssertionError.class,
+          () -> manager.setCurrentTime(null));
       assertEquals("Time cannot be null", exception.getMessage());
     }
 
     @Test
     @DisplayName("Test setting current time before current time")
     void testInvalidSetCurrentTime() {
-      var exception = assertThrows(AssertionError.class, () -> {
-        manager.setCurrentTime(LocalTime.of(0,0));
-      });
+      var exception = assertThrows(AssertionError.class,
+          () -> manager.setCurrentTime(LocalTime.of(0,0)));
       assertEquals("Time cannot be before current time", exception.getMessage());
     }
   }
