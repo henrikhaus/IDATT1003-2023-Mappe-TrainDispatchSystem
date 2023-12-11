@@ -7,7 +7,8 @@ import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
- * A command to remove a departure.
+ * <h1>RemoveDepartureCommand</h1>
+ * Represents a command to remove a departure.
  */
 public class RemoveDepartureCommand extends Command {
 

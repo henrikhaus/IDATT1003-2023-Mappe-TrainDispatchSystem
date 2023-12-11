@@ -9,7 +9,8 @@ import edu.ntnu.stud.utils.DepartureTableRenderer;
 import java.util.List;
 
 /**
- * A command to find a departure.
+ * <h1>FindDepartureCommand</h1>
+ * Represents a command to find a departure.
  */
 public class FindDepartureCommand extends Command {
 

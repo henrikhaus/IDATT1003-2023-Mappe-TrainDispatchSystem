@@ -6,10 +6,9 @@ import edu.ntnu.stud.input.InputHandler;
 import edu.ntnu.stud.models.TrainDepartureManager;
 import java.time.LocalTime;
 
-
-
 /**
- * A command to set the time.
+ * <h1>SetTimeCommand</h1>
+ * Represents a command to set the time.
  */
 public class SetTimeCommand extends Command {
 

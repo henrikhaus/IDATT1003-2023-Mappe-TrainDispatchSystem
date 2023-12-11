@@ -6,7 +6,14 @@ import java.time.LocalTime;
 import java.util.List;
 
 /**
+ * <h1>DepartureTableRenderer</h1>
  * Utility class for rendering a table of train departures.
+ *
+ * <p>
+ * This class contains a single static method for rendering a table of train departures.
+ * The method takes a list of train departures and the current time as arguments, and
+ * returns a formatted string representing the departure table.
+ * </p>
  */
 public class DepartureTableRenderer {
 
@@ -149,20 +156,14 @@ public class DepartureTableRenderer {
     lengths[5] = minDelayLength;
 
     // Find the longest string in each column
-    int i = 0;
-    for (TrainDeparture departure : departures) {
+    for (int i = 0; i < Math.min(departures.size(), TABLE_ROWS); i++) {
+      TrainDeparture departure = departures.get(i);
       lengths[0] = Math.max(lengths[0], departure.getDepartureTime().toString().length());
       lengths[1] = Math.max(lengths[1], departure.getLine().length());
       lengths[2] = Math.max(lengths[2], departure.getDestination().length());
       lengths[3] = Math.max(lengths[3], String.valueOf(departure.getTrainNumber()).length());
       lengths[4] = Math.max(lengths[4], String.valueOf(Math.max(departure.getTrack(), 0)).length());
       lengths[5] = Math.max(lengths[5], String.valueOf(departure.getDelay()).length());
-
-      // Ignore departures after the table limit
-      i++;
-      if (i >= TABLE_ROWS) {
-        break;
-      }
     }
 
     // Adjust lengths for color codes and minimum column widths

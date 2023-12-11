@@ -4,7 +4,8 @@ import edu.ntnu.stud.models.TrainDepartureManager;
 import edu.ntnu.stud.utils.DepartureTableRenderer;
 
 /**
- * A command to show the departure table.
+ * <h1>ShowDepartureTableCommand</h1>
+ * Represents a command to show the departure table.
  */
 public class ShowDepartureTableCommand extends Command {
 

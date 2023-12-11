@@ -1,7 +1,14 @@
 package edu.ntnu.stud.constants;
 
 /**
- * Provides ANSI color codes for console output.
+ * <h1>Colors</h1>
+ * Class for storing ANSI color codes.
+ *
+ * <p>
+ * This class' main purpose is to provide ANSI color codes for use in the application.
+ * The class contains a set of static final strings representing ANSI color codes.
+ * These can be used to format text in the terminal.
+ * </p>
  */
 public class Colors {
   public static final String RESET = "\u001B[0m";

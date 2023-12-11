@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
+ * <h1>TrainDepartureManager</h1>
  * Manages the collection of train departures, allowing for adding, modifying,
  * and querying departures based on various criteria.
  */

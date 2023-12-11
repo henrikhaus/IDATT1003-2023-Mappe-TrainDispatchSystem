@@ -4,7 +4,8 @@ import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
- * A command to exit the program.
+ * <h1>ExitCommand</h1>
+ * Represents a command to exit the program.
  */
 public class ExitCommand extends Command {
   private final TrainDispatchApp app;

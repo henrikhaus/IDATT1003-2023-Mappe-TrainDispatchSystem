@@ -16,9 +16,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * <h1>Train dispatch application</h1>
  * Main class for the train dispatch application.
+ *
+ * <p>
  * This class handles the initialization and execution of the application,
- * including the management of user commands and interaction with the TrainDepartureManager.
+ * including the management of the train departure manager and the user interface.
+ * </p>
  */
 public class TrainDispatchApp {
   private final TrainDepartureManager manager;
@@ -84,9 +88,9 @@ public class TrainDispatchApp {
 
   private void displayCommands() {
     System.out.println("Commands:");
-    for (int i = 0; i < commands.length; i++) {
-      System.out.printf("[%s] %s - %s%n", i + 1, commands[i].getName(),
-          commands[i].getDescription());
+    int index = 1;
+    for (Command command : commands) {
+      System.out.printf("[%d] %s - %s%n", index++, command.getName(), command.getDescription());
     }
   }
 

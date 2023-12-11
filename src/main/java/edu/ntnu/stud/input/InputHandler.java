@@ -5,7 +5,14 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 /**
- * Handles various types of user inputs.
+ * <h1>InputHandler</h1>
+ * Utility class for handling different types of user input.
+ *
+ * <p>
+ * This class contains a single static method for handling user input based on the specified type.
+ * The method takes an InputType as an argument, and returns the user input as an object.
+ * The method will continue to prompt the user until valid input is provided.
+ * </p>
  */
 public class InputHandler {
   private static final Scanner SCANNER = new Scanner(System.in);

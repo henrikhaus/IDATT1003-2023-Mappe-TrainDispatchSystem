@@ -3,8 +3,12 @@ package edu.ntnu.stud.commands;
 import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
- * Represents a generic command in the application.
- * This abstract class is intended to be subclassed by specific command implementations.
+ * <h1>Command</h1>
+ * Represents a generic command that can be executed by the user.
+ *
+ * <p>
+ * This class is abstract and should be extended by subclasses to define specific command behaviors.
+ * </p>
  */
 public abstract class Command {
   private final String name;

@@ -3,7 +3,12 @@ package edu.ntnu.stud.models;
 import java.time.LocalTime;
 
 /**
+ * <h1>TrainDeparture</h1>
  * Represents a train departure.
+ * <p>
+ * This class contains information about a train departure, including departure time,
+ * line, train number, destination, track number, and delay.
+ * </p>
  */
 public class TrainDeparture {
 
@@ -32,15 +37,14 @@ public class TrainDeparture {
     assert destination != null : "Destination cannot be null";
     assert !destination.isEmpty() : "Destination cannot be empty";
     assert trainNumber > 0 : "Train number cannot be less than 1";
-    assert track >= 0 : "Track number cannot be less than 0";
-    assert delay < 300 && delay >= 0 : "Delay cannot be less than 0 or greater than 300";
 
     this.departureTime = departureTime;
     this.line = line;
     this.trainNumber = trainNumber;
     this.destination = destination;
-    this.track = track;
-    this.delay = delay;
+
+    setDelay(delay);
+    setTrack(track);
   }
 
   /**

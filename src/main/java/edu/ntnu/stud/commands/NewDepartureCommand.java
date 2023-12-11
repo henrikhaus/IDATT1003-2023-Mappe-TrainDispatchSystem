@@ -14,7 +14,8 @@ import edu.ntnu.stud.models.TrainDepartureManager;
 import java.time.LocalTime;
 
 /**
- * A command to create a new departure.
+ * <h1>NewDepartureCommand</h1>
+ * Represents a command to create a new departure.
  */
 public class NewDepartureCommand extends Command {
 

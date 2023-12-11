@@ -8,7 +8,8 @@ import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
- * A command to set a track to a departure.
+ * <h1>SetTrackCommand</h1>
+ * Represents a command to set a track to a departure.
  */
 public class SetTrackCommand extends Command {
   /**

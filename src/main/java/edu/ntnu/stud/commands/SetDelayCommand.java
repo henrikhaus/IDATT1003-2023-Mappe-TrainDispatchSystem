@@ -8,7 +8,8 @@ import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
- * A command to set a delay to a departure.
+ * <h1>SetDelayCommand</h1>
+ * Represents a command to set a delay to a departure.
  */
 public class SetDelayCommand extends Command {
 
