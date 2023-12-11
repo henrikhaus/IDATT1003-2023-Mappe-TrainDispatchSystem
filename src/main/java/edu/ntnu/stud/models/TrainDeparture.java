@@ -28,7 +28,9 @@ public class TrainDeparture {
                         int track, int delay) {
     assert departureTime != null : "Departure time cannot be null";
     assert line != null : "Line cannot be null";
+    assert !line.isEmpty() : "Line cannot be empty";
     assert destination != null : "Destination cannot be null";
+    assert !destination.isEmpty() : "Destination cannot be empty";
     assert trainNumber > 0 : "Train number cannot be less than 1";
     assert track >= 0 : "Track number cannot be less than 0";
     assert delay < 300 && delay >= 0 : "Delay cannot be less than 0 or greater than 300";
