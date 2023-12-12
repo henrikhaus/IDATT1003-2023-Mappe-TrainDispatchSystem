@@ -41,7 +41,7 @@ src
 ## Link to repository
 
 [//]: # (TODO: Include a link to your repository here.)
-
+https://gitlab.stud.idi.ntnu.no/henrikuh/IDATT1003-2023-Mappe-TrainDispatchSystem
 ## How to run the project
 
 [//]: # (TODO: Describe how to run your project here. What is the main class? What is the main method?
